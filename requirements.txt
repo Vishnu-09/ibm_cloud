@@ -1,1 +1,6 @@
-flask
+pandas
+streamlit
+emoji
+plotly
+urlextract
+pytest
