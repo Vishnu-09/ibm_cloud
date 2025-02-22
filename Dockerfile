@@ -1,11 +1,19 @@
+# Base image
 FROM python:3.9-slim
 
+# Set working directory
 WORKDIR /app
 
-COPY requirements.txt /app/
+# Copy requirements and install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir --default-timeout=1000 -r requirements.txt
 
-RUN pip install -r requirements.txt
+# Copy application code
+COPY app/ .
 
-COPY . /app
+# Expose the port Streamlit runs on
+EXPOSE 8501
 
-CMD ["python", "app.py"]
+# Run the application
+CMD ["streamlit", "run", "main.py"]
+
